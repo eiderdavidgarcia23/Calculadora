@@ -2,9 +2,11 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace Calculadora
 {
+    [DesignerCategory("Code")]
     public partial class Form1 : Form
     {
         private TextBox txtPantalla;
