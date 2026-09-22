@@ -4,18 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Web</title>
-    <style>
-        * { box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #121212; margin: 0; }
-        .calc { background: #1e1e1e; padding: 20px; border-radius: 12px; width: 320px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        #pantalla { width: 100%; height: 50px; background: #000; color: #0f0; text-align: right; font-size: 18px; font-weight: bold; padding: 10px; border: none; border-radius: 6px; margin-bottom: 15px; }
-        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        button { padding: 15px; font-size: 18px; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; background: #333; color: #fff; }
-        button:active { background: #555; }
-        .op { background: #ff9500; }
-        .action { background: #a5a5a5; color: #000; }
-        .equal { background: #4caf50; grid-column: span 2; }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="calc">
@@ -46,36 +35,6 @@
             <button class="equal" onclick="calcular()">=</button>
         </div>
     </div>
-
-    <script>
-        const p = document.getElementById('pantalla');
-        function agregar(v) {
-            if (p.value === 'Error' || p.value === 'No se puede dividir entre cero') p.value = '';
-            p.value += v;
-        }
-        function limpiarTodo() { p.value = ''; }
-        function limpiarEntrada() { p.value = ''; }
-        function retroceso() {
-            if (p.value !== 'Error' && p.value !== 'No se puede dividir entre cero') {
-                p.value = p.value.slice(0, -1);
-            } else {
-                p.value = '';
-            }
-        }
-        function calcular() {
-            try {
-                if (p.value.trim() !== '') {
-                    let res = Function('"use strict";return (' + p.value + ')')();
-                    if (!isFinite(res)) {
-                        p.value = 'No se puede dividir entre cero';
-                    } else {
-                        p.value = res;
-                    }
-                }
-            } catch (e) {
-                p.value = 'Error';
-            }
-        }
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
