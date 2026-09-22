@@ -130,7 +130,16 @@ namespace Calculadora
                 {
                     string op = txtPantalla.Text.Replace("x", "*");
                     var res = new DataTable().Compute(op, null);
-                    txtPantalla.Text = res.ToString();
+                    string resultadoTexto = res.ToString();
+
+                    if (resultadoTexto.Contains("Infinity") || resultadoTexto.Contains("Infinito") || resultadoTexto == "NaN")
+                    {
+                        txtPantalla.Text = "Error";
+                    }
+                    else
+                    {
+                        txtPantalla.Text = resultadoTexto;
+                    }
                 }
             }
             catch
