@@ -28,7 +28,7 @@ namespace Calculadora
             {
                 Location = new Point(15, 15),
                 Size = new Size(275, 40),
-                Font = new Font("Arial", 18, FontStyle.Bold),
+                Font = new Font("Arial", 14, FontStyle.Bold),
                 TextAlign = HorizontalAlignment.Right,
                 ReadOnly = true,
                 BackColor = Color.Black,
@@ -105,7 +105,7 @@ namespace Calculadora
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             Button b = (Button)sender;
-            if (txtPantalla.Text == "Error") txtPantalla.Text = "";
+            if (txtPantalla.Text == "Error" || txtPantalla.Text.StartsWith("No se puede")) txtPantalla.Text = "";
             txtPantalla.Text += b.Text;
         }
 
@@ -116,7 +116,7 @@ namespace Calculadora
 
         private void btnRetroceso_Click(object sender, EventArgs e)
         {
-            if (txtPantalla.Text.Length > 0 && txtPantalla.Text != "Error")
+            if (txtPantalla.Text.Length > 0 && txtPantalla.Text != "Error" && !txtPantalla.Text.StartsWith("No se puede"))
             {
                 txtPantalla.Text = txtPantalla.Text.Substring(0, txtPantalla.Text.Length - 1);
             }
@@ -134,7 +134,7 @@ namespace Calculadora
 
                     if (resultadoTexto.Contains("Infinity") || resultadoTexto.Contains("Infinito") || resultadoTexto == "NaN")
                     {
-                        txtPantalla.Text = "Error";
+                        txtPantalla.Text = "No se puede dividir entre cero";
                     }
                     else
                     {
